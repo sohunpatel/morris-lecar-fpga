@@ -1,0 +1,1 @@
+/tool/Xilinx/Vitis/2020.1/bin/vitis_hls ./MorrisLecar/script.tcl

@@ -5,20 +5,41 @@
 #include "hls_math.h"
 #include "hls_stream.h"
 
-void MorrisLecar(float Iext, data_t *V, data_t *W, float g_fast, float g_slow,
-                 float beta_w) {
+void MorrisLecar(hls::stream<stream_t> &Iext, hls::stream<stream_t> &Vout) {
+// clang-format off
+#pragma HLS INTERFACE axis port=Iext
+#pragma HLS INTERFACE axis port=Vout
 #pragma HLS INTERFACE s_axilite port = return
-    data_t IL = G_LEAK * (*V - EL_M);
-    data_t minf = 0.5 * (1 + hls::tanh((*V - BETA_M) / GAMMA_M));
-    data_t winf = 0.5 * (1 + hls::tanh((*V - beta_w) / GAMMA_W));
-    data_t tauw = 1 / hls::cosh(0.5 * (*V - beta_w) / GAMMA_W);
-    data_t INa = g_fast * minf * (*V - ENa_M);
-    data_t IK = g_slow * *W * (*V - EK_M);
-    data_t dvdt = (Iext - IL - INa - IK) / CM_M;
-    data_t dwdt = (winf - *W) * PHI / tauw;
+#ifdef LUT
+#pragma HLS ARRAY_PARTITION variable=tanh_LUT dim=1
+#pragma HLS ARRAY_PARTITION variable=sech_LUT dim=1
+#endif
 
-    *V += dvdt * DT;
-    *W += dwdt * DT;
+    stream_t temp;
+    converter_t converter;
+    data_t V;
+    data_t W;
+
+    while (!Iext.empty()) {
+        Iext.read(temp);
+        converter.i = temp.data;
+        data_t Iinj = converter.f;
+        data_t IL = G_LEAK * (V - EL_M);
+        data_t minf = 0.5 * (1 + hls::tanh((V - BETA_M) / GAMMA_M));
+        data_t winf = 0.5 * (1 + hls::tanh((V - BETA_W) / GAMMA_W));
+        data_t tauw = 1 / hls::cosh(0.5 * (V - BETA_W) / GAMMA_W);
+        data_t INa = G_FAST * minf * (V - ENa_M);
+        data_t IK = G_SLOW * W * (V - EK_M);
+        data_t dvdt = (Iinj - IL - INa - IK) / CM_M;
+        data_t dwdt = (winf - W) * PHI / tauw;
+        
+        V += dvdt * DT;
+        W += dwdt * DT;
+
+        converter.f = V;
+        temp.data = converter.i;
+        Vout.write(temp);
+    }
 }
 #ifdef LUT
 data_t tanh_apr(data_t x) {

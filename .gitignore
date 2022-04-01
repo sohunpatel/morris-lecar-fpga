@@ -191,5 +191,10 @@ cython_debug/
 MorrisLecar/MorrisLecar/*
 !MorrisLecar/MorrisLecar/directives.tcl
 !MorrisLecar/MorrisLecar/script.tcl
-
 IP/
+MorrisLecar_Interface/*
+!MorrisLecar_Interface/MorrisLecar_Interface.xpr
+!MorrisLecar_Interface/MorrisLecar_Interface.srcs
+!MorrisLecar_Interface/reports
+MorrisLecar_Interface/MorrisLecar_Interface.srcs/sources_1/bd/top/*
+!MorrisLecar_Interface/MorrisLecar_Interface.srcs/sources_1/bd/top/top*

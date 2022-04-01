@@ -1,0 +1,227 @@
+
+
+================================================================
+== Vitis HLS Report for 'MorrisLecar'
+================================================================
+* Date:           Wed Jan  1 00:01:14 2020
+
+* Version:        2020.1 (Build 2902540 on Wed May 27 20:16:15 MDT 2020)
+* Project:        MorrisLecar
+* Solution:       MorrisLecar (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  | 10.00 ns | 11.594 ns |   2.70 ns  |
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------------------------+---------------------------------------+---------+---------+-----------+----------+-----+-----+---------+
+        |                                                  |                                       |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+        |                     Instance                     |                 Module                |   min   |   max   |    min    |    max   | min | max |   Type  |
+        +--------------------------------------------------+---------------------------------------+---------+---------+-----------+----------+-----+-----+---------+
+        |grp_sinh_cosh_range_redux_cordic_double_s_fu_177  |sinh_cosh_range_redux_cordic_double_s  |        3|      856| 34.781 ns | 9.924 us |    3|  856|   none  |
+        |grp_generic_tanh_double_s_fu_184                  |generic_tanh_double_s                  |        3|      121| 34.781 ns | 1.403 us |    3|  121|   none  |
+        |grp_generic_tanh_float_s_fu_195                   |generic_tanh_float_s                   |        3|       74| 34.781 ns | 0.858 us |    3|   74|   none  |
+        +--------------------------------------------------+---------------------------------------+---------+---------+-----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +-------------------+---------+---------+------------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) |  Iteration |  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |   Latency  |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+------------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_23_1  |        ?|        ?| 219 ~ 1072 |          -|          -|     ?|    no    |
+        +-------------------+---------+---------+------------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|      4|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |       18|  133|   19457|  41170|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|   1284|    -|
+|Register         |        -|    -|    1042|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |       18|  133|   20499|  42458|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        6|   60|      19|     79|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +--------------------------------------------------+---------------------------------------+---------+----+------+-------+-----+
+    |                     Instance                     |                 Module                | BRAM_18K| DSP|  FF  |  LUT  | URAM|
+    +--------------------------------------------------+---------------------------------------+---------+----+------+-------+-----+
+    |control_s_axi_U                                   |control_s_axi                          |        0|   0|    36|     40|    0|
+    |dadd_64ns_64ns_64_7_full_dsp_1_U61                |dadd_64ns_64ns_64_7_full_dsp_1         |        0|   3|   630|   1141|    0|
+    |ddiv_64ns_64ns_64_59_no_dsp_1_U63                 |ddiv_64ns_64ns_64_59_no_dsp_1          |        0|   0|     0|      0|    0|
+    |ddiv_64ns_64ns_64_59_no_dsp_1_U64                 |ddiv_64ns_64ns_64_59_no_dsp_1          |        0|   0|     0|      0|    0|
+    |dmul_64ns_64ns_64_7_max_dsp_1_U62                 |dmul_64ns_64ns_64_7_max_dsp_1          |        0|  11|   342|    586|    0|
+    |faddfsub_32ns_32ns_32_5_full_dsp_1_U55            |faddfsub_32ns_32ns_32_5_full_dsp_1     |        0|   2|   205|    390|    0|
+    |fdiv_32ns_32ns_32_16_no_dsp_1_U57                 |fdiv_32ns_32ns_32_16_no_dsp_1          |        0|   0|     0|      0|    0|
+    |fmul_32ns_32ns_32_4_max_dsp_1_U56                 |fmul_32ns_32ns_32_4_max_dsp_1          |        0|   3|   143|    321|    0|
+    |fpext_32ns_64_2_no_dsp_1_U59                      |fpext_32ns_64_2_no_dsp_1               |        0|   0|     0|      0|    0|
+    |fpext_32ns_64_2_no_dsp_1_U60                      |fpext_32ns_64_2_no_dsp_1               |        0|   0|     0|      0|    0|
+    |fptrunc_64ns_32_2_no_dsp_1_U58                    |fptrunc_64ns_32_2_no_dsp_1             |        0|   0|     0|      0|    0|
+    |grp_generic_tanh_double_s_fu_184                  |generic_tanh_double_s                  |        5|  43|  5676|   7314|    0|
+    |grp_generic_tanh_float_s_fu_195                   |generic_tanh_float_s                   |        5|  37|  5282|   6579|    0|
+    |grp_sinh_cosh_range_redux_cordic_double_s_fu_177  |sinh_cosh_range_redux_cordic_double_s  |        8|  34|  7143|  24799|    0|
+    +--------------------------------------------------+---------------------------------------+---------+----+------+-------+-----+
+    |Total                                             |                                       |       18| 133| 19457|  41170|    0|
+    +--------------------------------------------------+---------------------------------------+---------+----+------+-------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |tmp_nbreadreq_fu_114_p9           |    and   |   0|  0|   2|           1|           0|
+    |ap_block_state76_on_subcall_done  |    or    |   0|  0|   2|           1|           1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0|   4|           2|           1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------+-----+-----------+-----+-----------+
+    |        Name       | LUT | Input Size| Bits| Total Bits|
+    +-------------------+-----+-----------+-----+-----------+
+    |Iext_TDATA_blk_n   |    9|          2|    1|          2|
+    |Vout_TDATA_blk_n   |    9|          2|    1|          2|
+    |ap_NS_fsm          |  937|        218|    1|        218|
+    |grp_fu_206_opcode  |   15|          3|    2|          6|
+    |grp_fu_206_p0      |   33|          6|   32|        192|
+    |grp_fu_206_p1      |   41|          8|   32|        256|
+    |grp_fu_215_p0      |   27|          5|   32|        160|
+    |grp_fu_215_p1      |   33|          6|   32|        192|
+    |grp_fu_227_p0      |   21|          4|   64|        256|
+    |grp_fu_230_p0      |   33|          6|   32|        192|
+    |grp_fu_236_p0      |   15|          3|   64|        192|
+    |grp_fu_236_p1      |   21|          4|   64|        256|
+    |grp_fu_242_p0      |   27|          5|   64|        320|
+    |grp_fu_242_p1      |   21|          4|   64|        256|
+    |grp_fu_249_p0      |   21|          4|   64|        256|
+    |grp_fu_249_p1      |   21|          4|   64|        256|
+    +-------------------+-----+-----------+-----+-----------+
+    |Total              | 1284|        284|  613|       3012|
+    +-------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------------------------------------------+-----+----+-----+-----------+
+    |                              Name                             |  FF | LUT| Bits| Const Bits|
+    +---------------------------------------------------------------+-----+----+-----+-----------+
+    |V_fu_110                                                       |   32|   0|   32|          0|
+    |W_fu_106                                                       |   32|   0|   32|          0|
+    |ap_CS_fsm                                                      |  217|   0|  217|          0|
+    |conv6_reg_471                                                  |   64|   0|   64|          0|
+    |conv_reg_394                                                   |   64|   0|   64|          0|
+    |grp_generic_tanh_double_s_fu_184_ap_start_reg                  |    1|   0|    1|          0|
+    |grp_generic_tanh_float_s_fu_195_ap_start_reg                   |    1|   0|    1|          0|
+    |grp_sinh_cosh_range_redux_cordic_double_s_fu_177_ap_start_reg  |    1|   0|    1|          0|
+    |reg_261                                                        |   32|   0|   32|          0|
+    |reg_271                                                        |   64|   0|   64|          0|
+    |reg_278                                                        |   64|   0|   64|          0|
+    |reg_285                                                        |   64|   0|   64|          0|
+    |reg_293                                                        |   64|   0|   64|          0|
+    |reg_299                                                        |   32|   0|   32|          0|
+    |reg_305                                                        |   32|   0|   32|          0|
+    |reg_312                                                        |   32|   0|   32|          0|
+    |sub1_reg_466                                                   |   32|   0|   32|          0|
+    |temp_dest_V_reg_449                                            |    6|   0|    6|          0|
+    |temp_id_V_reg_444                                              |    5|   0|    5|          0|
+    |temp_keep_V_reg_424                                            |    4|   0|    4|          0|
+    |temp_last_V_reg_439                                            |    1|   0|    1|          0|
+    |temp_strb_V_reg_429                                            |    4|   0|    4|          0|
+    |temp_user_V_reg_434                                            |    2|   0|    2|          0|
+    |tmp_1_reg_414                                                  |   32|   0|   32|          0|
+    |tmp_s_reg_409                                                  |   64|   0|   64|          0|
+    |x_assign_1_reg_399                                             |   32|   0|   32|          0|
+    |x_assign_3_reg_404                                             |   64|   0|   64|          0|
+    +---------------------------------------------------------------+-----+----+-----+-----------+
+    |Total                                                          | 1042|   0| 1042|          0|
+    +---------------------------------------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+---------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  | Source Object |    C Type    |
++-----------------------+-----+-----+------------+---------------+--------------+
+|s_axi_control_AWVALID  |  in |    1|    s_axi   |    control    |  return void |
+|s_axi_control_AWREADY  | out |    1|    s_axi   |    control    |  return void |
+|s_axi_control_AWADDR   |  in |    4|    s_axi   |    control    |  return void |
+|s_axi_control_WVALID   |  in |    1|    s_axi   |    control    |  return void |
+|s_axi_control_WREADY   | out |    1|    s_axi   |    control    |  return void |
+|s_axi_control_WDATA    |  in |   32|    s_axi   |    control    |  return void |
+|s_axi_control_WSTRB    |  in |    4|    s_axi   |    control    |  return void |
+|s_axi_control_ARVALID  |  in |    1|    s_axi   |    control    |  return void |
+|s_axi_control_ARREADY  | out |    1|    s_axi   |    control    |  return void |
+|s_axi_control_ARADDR   |  in |    4|    s_axi   |    control    |  return void |
+|s_axi_control_RVALID   | out |    1|    s_axi   |    control    |  return void |
+|s_axi_control_RREADY   |  in |    1|    s_axi   |    control    |  return void |
+|s_axi_control_RDATA    | out |   32|    s_axi   |    control    |  return void |
+|s_axi_control_RRESP    | out |    2|    s_axi   |    control    |  return void |
+|s_axi_control_BVALID   | out |    1|    s_axi   |    control    |  return void |
+|s_axi_control_BREADY   |  in |    1|    s_axi   |    control    |  return void |
+|s_axi_control_BRESP    | out |    2|    s_axi   |    control    |  return void |
+|ap_clk                 |  in |    1| ap_ctrl_hs |  MorrisLecar  | return value |
+|ap_rst_n               |  in |    1| ap_ctrl_hs |  MorrisLecar  | return value |
+|interrupt              | out |    1| ap_ctrl_hs |  MorrisLecar  | return value |
+|Iext_TDATA             |  in |   32|    axis    | Iext_V_data_V |    pointer   |
+|Iext_TVALID            |  in |    1|    axis    | Iext_V_dest_V |    pointer   |
+|Iext_TREADY            | out |    1|    axis    | Iext_V_dest_V |    pointer   |
+|Iext_TDEST             |  in |    6|    axis    | Iext_V_dest_V |    pointer   |
+|Iext_TKEEP             |  in |    4|    axis    | Iext_V_keep_V |    pointer   |
+|Iext_TSTRB             |  in |    4|    axis    | Iext_V_strb_V |    pointer   |
+|Iext_TUSER             |  in |    2|    axis    | Iext_V_user_V |    pointer   |
+|Iext_TLAST             |  in |    1|    axis    | Iext_V_last_V |    pointer   |
+|Iext_TID               |  in |    5|    axis    |  Iext_V_id_V  |    pointer   |
+|Vout_TDATA             | out |   32|    axis    | Vout_V_data_V |    pointer   |
+|Vout_TVALID            | out |    1|    axis    | Vout_V_dest_V |    pointer   |
+|Vout_TREADY            |  in |    1|    axis    | Vout_V_dest_V |    pointer   |
+|Vout_TDEST             | out |    6|    axis    | Vout_V_dest_V |    pointer   |
+|Vout_TKEEP             | out |    4|    axis    | Vout_V_keep_V |    pointer   |
+|Vout_TSTRB             | out |    4|    axis    | Vout_V_strb_V |    pointer   |
+|Vout_TUSER             | out |    2|    axis    | Vout_V_user_V |    pointer   |
+|Vout_TLAST             | out |    1|    axis    | Vout_V_last_V |    pointer   |
+|Vout_TID               | out |    5|    axis    |  Vout_V_id_V  |    pointer   |
++-----------------------+-----+-----+------------+---------------+--------------+
+

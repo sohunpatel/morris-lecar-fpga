@@ -36,21 +36,8 @@ typedef float data_t;
 #define BETA_W -13
 #define PHI 0.15
 
-static data_t t_stop = T_STOP;
-static data_t dt = DT;
-static data_t cm_m = CM_M;
-static data_t v_rest = V_REST;
-static data_t el_m = EL_M;
-static data_t ek_m = EK_M;
-static data_t eNa_m = ENa_M;
-static data_t g_fast = G_FAST;
-static data_t g_slow = G_SLOW;
-static data_t g_leak = G_LEAK;
-static data_t beta_m = BETA_M;
-static data_t gamma_m = GAMMA_M;
-static data_t gamma_w = GAMMA_W;
-static data_t beta_w = BETA_W;
-static data_t phi = PHI;
+#define CTRL_START 1
+#define CTRL_DONE 2
 
 typedef union converter {
     float f;
@@ -67,8 +54,7 @@ typedef union {
     };
 } params_t;
 
-void MorrisLecar(hls::stream<stream_t> &Iext, hls::stream<stream_t> &V_out,
-                 data_t *V, data_t *W);
+void MorrisLecar(float Iext, data_t *V, data_t *W);
 
 #ifdef LUT
 data_t tanh_apr(data_t x);

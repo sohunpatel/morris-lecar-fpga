@@ -184,9 +184,12 @@ cython_debug/
 *.out
 *.app
 
+# Custom ignores
 .*
 !.gitignore
 
 MorrisLecar/MorrisLecar/*
 !MorrisLecar/MorrisLecar/directives.tcl
 !MorrisLecar/MorrisLecar/script.tcl
+
+IP/

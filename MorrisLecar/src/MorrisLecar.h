@@ -13,6 +13,7 @@
 //#defined LUT
 
 typedef ap_axis<32, 2, 5, 6> stream_t;
+typedef ap_axis<128, 2, 5, 6> stream_param_t;
 #ifdef FIXED
 typedef ap_fixed<32, 8> data_t;
 #else
@@ -35,55 +36,25 @@ typedef float data_t;
 #define BETA_W -13
 #define PHI 0.15
 
-static data_t t_stop = T_STOP;
-static data_t dt = DT;
-static data_t cm_m = CM_M;
-static data_t v_rest = V_REST;
-static data_t el_m = EL_M;
-static data_t ek_m = EK_M;
-static data_t eNa_m = ENa_M;
-static data_t g_fast = G_FAST;
-static data_t g_slow = G_SLOW;
-static data_t g_leak = G_LEAK;
-static data_t beta_m = BETA_M;
-static data_t gamma_m = GAMMA_M;
-static data_t gamma_w = GAMMA_W;
-static data_t beta_w = BETA_W;
-static data_t phi = PHI;
-
-typedef struct parameters {
-  data_t t_stop;
-  data_t dt;
-  data_t cm_m;
-  data_t v_rest;
-  data_t el_m;
-  data_t ek_m;
-  data_t eNa_m;
-  data_t g_fast;
-  data_t g_slow;
-  data_t g_leak;
-  data_t beta_m;
-  data_t gamma_m;
-  data_t gamma_w;
-  data_t beta_w;
-  data_t phi;
-};
+#define CTRL_START 1
+#define CTRL_DONE 2
 
 typedef union converter {
-  float f;
-  uint32_t i;
+    float f;
+    uint32_t i;
 } converter_t;
 
-void MorrisLecar(hls::stream<stream_t> &Iext, hls::stream<stream_t> &V_out,
-                 data_t *V, data_t *W, parameters params);
-// data_t leakage_current(data_t V);
-// data_t Na_current(data_t V);
-// data_t minf(data_t V);
-// data_t Ka_current(data_t V, data_t W);
-// data_t tauw(data_t V);
-// data_t winf(data_t V);
-// data_t dvdt(data_t Iext, data_t Il, data_t INa, data_t IK);
-// data_t dwdt(data_t Winf, data_t tauw, data_t W);
+typedef union {
+    __uint128_t total;
+    struct {
+        converter_t i_inj;
+        converter_t g_fast;
+        converter_t g_slow;
+        converter_t beta_w;
+    };
+} params_t;
+
+void MorrisLecar(float Iext, data_t *V, data_t *W);
 
 #ifdef LUT
 data_t tanh_apr(data_t x);
@@ -166,6 +137,6 @@ static data_t sech_LUT[256 + 1] = {
     0.0075592, 0.0073841, 0.0072130, 0.0070459, 0.0068827, 0.0067233, 0.0065676,
     0.0064154, 0.0062668, 0.0061216, 0.0059798, 0.0058413, 0.0057060, 0.0055738,
     0.0054447, 0.0053186, 0.0051954, 0.0050750, 0.0049575};
-#endif  // LUT
+#endif // LUT
 
-#endif  // MORRIS_LECAR_H
+#endif // MORRIS_LECAR_H

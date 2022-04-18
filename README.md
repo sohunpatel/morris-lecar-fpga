@@ -26,7 +26,7 @@ This project explores the implementation of the reduced 2-dimensional Morris Lec
 ├── MorrisLecar_Interface/          # Vivado project to create the AXI interface to the IP
 ├───── MorrisLecar_Interface.srcs/      # Source files for top level design diagram and wrapper
 ├───── reports/                         # Reports on resource utilization and timing
-├───── MorrisLecar_interface.xpr        # Vivado project file
+├───── MorrisLecar_Interface.xpr        # Vivado project file
 ├── PYNQ_Files/                     # Files that should be copied to the PYNQ ARM environment
 ├───── comparison.ipynb                 # Jupyter notebook that showcases the difference between hardware and software solutions
 ├───── Currents.py                      # Script that contains functions to give software currents

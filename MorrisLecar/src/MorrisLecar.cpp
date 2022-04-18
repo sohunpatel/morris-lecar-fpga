@@ -17,8 +17,8 @@ void MorrisLecar(hls::stream<stream_t> &Iext, hls::stream<stream_t> &Vout) {
 
     stream_t temp;
     converter_t converter;
-    data_t V;
-    data_t W;
+    data_t V = -0.07;
+    data_t W = 0.0000125;
 
     while (!Iext.empty()) {
         Iext.read(temp);

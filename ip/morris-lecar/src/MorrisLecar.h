@@ -51,7 +51,7 @@ static data_t gamma_w = GAMMA_W;
 static data_t beta_w = BETA_W;
 static data_t phi = PHI;
 
-typedef struct parameters {
+typedef struct {
   data_t t_stop;
   data_t dt;
   data_t cm_m;
@@ -67,7 +67,7 @@ typedef struct parameters {
   data_t gamma_w;
   data_t beta_w;
   data_t phi;
-};
+} parameters;
 
 typedef union converter {
     float f;

@@ -8,7 +8,7 @@ make_wrapper -files [get_files ./pynq-interface/pynq-interface.srcs/sources_1/bd
 add_files -norecurse ./pynq-interface/pynq-interface.srcs/sources_1/bd/top/hdl/top_wrapper.v
 launch_runs impl_1 -to_step write_bitstream -jobs 10
 wait_on_run impl_1
-if {[file exists ./latency_monitor.bit] == 1} {
-    file delete ./latency_monitor.bit
+if {[file exists ../PYNQ_Files/top.bit] == 1} {
+    file delete ../PYNQ_Files/top.bit
 }
-file copy ./pynq-interface/pynq-interface.runs/impl_1/top_wrapper.bit ./pynq-interface.bit
+file copy ./pynq-interface/pynq-interface.runs/impl_1/top_wrapper.bit ../PYNQ_Files/top.bit

@@ -198,3 +198,7 @@ MorrisLecar_Interface/*
 !MorrisLecar_Interface/reports
 MorrisLecar_Interface/MorrisLecar_Interface.srcs/sources_1/bd/top/*
 !MorrisLecar_Interface/MorrisLecar_Interface.srcs/sources_1/bd/top/top*
+ip/*
+!ip/morris-lecar
+ip/morris-lecar/morris-lecar
+pynq-interface/pynq-interface

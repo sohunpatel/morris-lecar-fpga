@@ -18,38 +18,39 @@ This project explores the implementation of the reduced 2-dimensional Morris Lec
 # Project Directory
 ```
 . 
-├── MorrisLecar/                    # Vitis HLS files for compiling Morris Lecar computational IP
-├───── MorrisLecar/                     # Vitis HLS artifacts and scripts
-├───── reports/                         # Reports on IP's resource utilization and timing
-├───── src/                             # Sources files that IP is generated from
-├───── build_ip.py                      # Python script to generate and export IP
-├── MorrisLecar_Interface/          # Vivado project to create the AXI interface to the IP
-├───── MorrisLecar_Interface.srcs/      # Source files for top level design diagram and wrapper
-├───── reports/                         # Reports on resource utilization and timing
-├───── MorrisLecar_Interface.xpr        # Vivado project file
-├── PYNQ_Files/                     # Files that should be copied to the PYNQ ARM environment
-├───── comparison.ipynb                 # Jupyter notebook that showcases the difference between hardware and software solutions
-├───── Currents.py                      # Script that contains functions to give software currents
-├───── hardware.ipynb                   # Jupyter notebook that showcases hardware solution
-├───── hardware.py                      # Script that contains function to return voltage for hardware solution
-├───── software.ipynb                   # Jupyter notebook that showcases software solution
-├───── software.py                      # Script that contains function to return voltage for software solution
-├── python/                         # Random pythons tests and scripts
+├── ip/                     # Vitis HLS IP for use in Vivado project
+├───── morris-lecar/            # HLS IP for morris lecar neuron model
+├──────── src/                      # Sources files that IP is generated from
+├──────── run.sh                    # script that builds IP
+├── pynq-interface/         # Vivado project to create the AXI interface to the IP
+├───── pynq-interface.bit       # Bitstream created by vivado to be loaded onto pynq board
+├───── run.tcl                  # TCL script to be run by vivado to build bitstream
+├── PYNQ_Files/             # Files that should be copied to the PYNQ ARM environment
+├───── comparison.ipynb         # Jupyter notebook that showcases the difference between hardware and software solutions
+├───── Currents.py              # Script that contains functions to give software currents
+├───── hardware.ipynb           # Jupyter notebook that showcases hardware solution
+├───── hardware.py              # Script that contains function to return voltage for hardware solution
+├───── software.ipynb           # Jupyter notebook that showcases software solution
+├───── software.py              # Script that contains function to return voltage for software solution
+├── python/                 # Random pythons tests and scripts
 ├── LICENSE
 └── README.md
 ```
 
 # Usage
 
-To use this project, there are a few steps that need to be followed.
+To use this project, there are a few steps that need to be followed. It is recommended to use a linux OS, but a windows os can still be used with Ubuntu WSL.
 
 1. Install software [requirements](#requirements) below on your host machine (laptop or desktop)
-2. Generate the bitstream by running [`generate_bitstream.py`](MorrisLecar_Interface/generate_bitstream.py)
-3. [Setup PYNQ](#setup-pynq)
+2. Source the settings for vitis by running `source XILINX_INSTALL_LOCATION/Vitis/2020.1/settings.sh`
+3. Create HLS IP by running script [`ip/morris-lecar/run.sh`](ip/morris-lecar/run.sh)
+4. Source the settings for vivado by running `source XILINX_INSTALL_LOCATION/Vivado/2020.1/settings.sh`
+5. Generate bitstream by running script 'vivado pynq-interface/run.tcl'
+4. [Setup PYNQ](#setup-pynq)
 
 ## Requirements
 
-* OS: Ubuntu 20.04 (recommended) or Windows 10
+* OS: Ubuntu 20.04 (recommended) or Windows 10 with Ubuntu WSL
 * Vitis (Vivado) HLS <= 2020.1
 * Vivado <= 2020.1
 * TCL > 8.0.0
@@ -83,7 +84,7 @@ The default username and password for the PYNQ jupyter server is xilinx.
 
 ## Vitis unrecognized files
 
-Because tcl uses absolute file paths, you may need to edit the files definded in [`scripts.tcl`](MorrisLecar/MorrisLecar/script.tcl) to match the absolute file paths on your system
+Because tcl uses absolute file paths, you may need to edit the files defined in [`scripts.tcl`](MorrisLecar/MorrisLecar/script.tcl) to match the absolute file paths on your system
 
 ## Vitis fails when trying to export ip
 
@@ -95,4 +96,4 @@ There are a few things that might be wrong. If possible connect to USB to your h
 
 There is a specific sequence of events that will tell you if the sequence has occurred properly if you cannot connect to the usb port. It may change depending on your board, but generally a green LED labeled "Done" will turn on and some other LEDs will flash a few times.
 
-If the correct boot-up sequence occured, but you still cannot access the jupyter server, the problem most likely is with the connection on the host machine. Sometimes, different browsers will not work with PYNQ. It is recommened that a chromium based browser is used such as Google Chrome or Microsoft Edge. Also, make sure that your ethernet adapter has been assigned a static IP address. For windows, follow this [guidelines](https://kb.netgear.com/27476/How-do-I-set-a-static-IP-address-in-Windows), for linux this [guidelines](https://sites.cns.utexas.edu/oit-blog/blog/how-set-static-ip-linux-machine).
+If the correct boot-up sequence occurred, but you still cannot access the jupyter server, the problem most likely is with the connection on the host machine. Sometimes, different browsers will not work with PYNQ. It is recommened that a chromium based browser is used such as Google Chrome or Microsoft Edge. Also, make sure that your ethernet adapter has been assigned a static IP address. For windows, follow this [guidelines](https://kb.netgear.com/27476/How-do-I-set-a-static-IP-address-in-Windows), for linux this [guidelines](https://sites.cns.utexas.edu/oit-blog/blog/how-set-static-ip-linux-machine).
